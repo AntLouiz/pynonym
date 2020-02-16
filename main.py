@@ -1,4 +1,5 @@
 import requests
+from itertools import islice
 from bs4 import BeautifulSoup
 
 
@@ -17,6 +18,29 @@ if not all_sym:
     print("Não foi encontrado nenhum sinônimo para esta palavra.")
 
 all_sym = [sym.string for sym in all_sym]
+all_rest_sym = None
 
-for sym in all_sym:
-    print(f'* {sym}')
+elements_by_list = 20
+total_slices = len(all_sym) // elements_by_list
+rest = len(all_sym) % elements_by_list
+
+if rest != 0:
+    all_sym = all_sym[:-(rest)]
+    all_rest_sym = all_sym[-(rest):]
+
+result = len(all_sym) // total_slices
+
+slice_iter = [10 for i in range(total_slices)]
+
+all_sym = iter(all_sym)
+
+tabbed_syms = [list(islice(all_sym, slc)) for slc in slice_iter]
+
+
+if all_rest_sym:
+    tabbed_syms.append(all_rest_sym)
+
+print("\n")
+for tab_sym in tabbed_syms:
+    print(*tab_sym, sep="   ")
+    print("\n")

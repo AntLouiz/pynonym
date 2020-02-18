@@ -1,7 +1,14 @@
 import requests
 import sys
+import unicodedata
 from itertools import islice
 from bs4 import BeautifulSoup
+
+
+def normalize_sym(sym):
+    nfkd_form = unicodedata.normalize('NFKD', sym)
+    only_ascii = nfkd_form.encode('ASCII', 'ignore')
+    return only_ascii.decode('UTF-8')
 
 
 def main():
@@ -13,6 +20,8 @@ def main():
     if not sym:
         print("Insira uma palavra que deseja buscar o sinônimo.")
         sys.exit(-1)
+
+    sym = normalize_sym(sym)
 
     url = f'https://www.sinonimos.com.br/{sym}/'
     response = requests.get(url)

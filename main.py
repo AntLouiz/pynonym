@@ -1,9 +1,19 @@
 import requests
+import sys
 from itertools import islice
 from bs4 import BeautifulSoup
 
 
-url = 'https://www.sinonimos.com.br/desenvolver/'
+try:
+    sym = sys.argv[1]
+except IndexError:
+    sym = None
+
+if not sym:
+    print("Insira uma palavra que deseja buscar o sinônimo.")
+    sys.exit(0)
+
+url = f'https://www.sinonimos.com.br/{sym}/'
 response = requests.get(url)
 
 if response.status_code != 200:

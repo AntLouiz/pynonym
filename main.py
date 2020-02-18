@@ -11,21 +11,23 @@ except IndexError:
 
 if not sym:
     print("Insira uma palavra que deseja buscar o sinônimo.")
-    sys.exit(0)
+    sys.exit(-1)
 
 url = f'https://www.sinonimos.com.br/{sym}/'
 response = requests.get(url)
 
 if response.status_code != 200:
     print("Houve um problema na requisição")
+    sys.exit(-1)
 
 content = response.text
 parser = BeautifulSoup(content, 'html.parser')
 
 all_sym = parser.findAll('a', {'class': 'sinonimo'})
 
-if not all_sym:
+if not len(all_sym):
     print("Não foi encontrado nenhum sinônimo para esta palavra.")
+    sys.exit(0)
 
 all_sym = [sym.string for sym in all_sym]
 all_rest_sym = None

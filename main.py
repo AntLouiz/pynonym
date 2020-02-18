@@ -3,6 +3,7 @@ import sys
 import unicodedata
 from itertools import islice
 from bs4 import BeautifulSoup
+from settings import BASE_URL, ELEMENTS_TO_EACH_LINE, ELEMENTS_TO_EACH_LIST
 
 
 def normalize_sym(sym):
@@ -23,7 +24,7 @@ def main():
 
     sym = normalize_sym(sym)
 
-    url = f'https://www.sinonimos.com.br/{sym}/'
+    url = f'{BASE_URL}/{sym}/'
     response = requests.get(url)
 
     if response.status_code != 200:
@@ -42,7 +43,7 @@ def main():
     all_sym = [sym.string for sym in all_sym]
     all_rest_sym = None
 
-    elements_by_list = 20
+    elements_by_list = ELEMENTS_TO_EACH_LIST
     total_slices = len(all_sym) // elements_by_list
 
     if total_slices == 0:
@@ -57,7 +58,7 @@ def main():
 
     result = len(all_sym) // total_slices
 
-    slice_iter = [10 for i in range(total_slices)]
+    slice_iter = [ELEMENTS_TO_EACH_LINE for i in range(total_slices)]
 
     all_sym = iter(all_sym)
 

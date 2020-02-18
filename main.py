@@ -34,6 +34,11 @@ all_rest_sym = None
 
 elements_by_list = 20
 total_slices = len(all_sym) // elements_by_list
+
+if total_slices == 0:
+    total_slices = 1
+    elements_by_list = len(all_sym)
+
 rest = len(all_sym) % elements_by_list
 
 if rest != 0:

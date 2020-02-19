@@ -56,8 +56,6 @@ def main():
         all_sym = all_sym[:-(rest)]
         all_rest_sym = all_sym[-(rest):]
 
-    result = len(all_sym) // total_slices
-
     slice_iter = [ELEMENTS_TO_EACH_LINE for i in range(total_slices)]
 
     all_sym = iter(all_sym)

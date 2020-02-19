@@ -27,6 +27,10 @@ def main():
     url = f'{BASE_URL}/{sym}/'
     response = requests.get(url)
 
+    if response.status_code == 404:
+        print("Nenhum sinônimo encontrado.")
+        sys.exit(0)
+
     if response.status_code != 200:
         print("Houve um problema na requisição")
         sys.exit(-1)

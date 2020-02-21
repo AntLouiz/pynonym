@@ -41,7 +41,7 @@ def main():
     all_sym = parser.findAll('a', {'class': 'sinonimo'})
 
     if not len(all_sym):
-        print("Não foi encontrado nenhum sinônimo para esta palavra.")
+        print("Nenhum sinônimo encontrado.")
         sys.exit(0)
 
     all_sym = [sym.string for sym in all_sym]

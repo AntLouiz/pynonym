@@ -1,17 +1,18 @@
-# pynonym
-Um programa de linha de comando que exibe os sinônimos de uma determinada palavra
+# Pynonym
 
-## Descrição
-Esse programinha serve para pessoas que tem problemas em escrever sinônimos em textos,
-como eu, que ficava diversas vezes entrando no site de sinônimos para buscar as palavras
-corretas para meus textos.
-
-#### Agora uso apenas um comando no terminal e pronto!
+Pynonym is a command-line synonym searcher that shows the synonyms of a given Portuguese word. It gives you easy access to synonyms in your terminal:
 
 ```
 $ sym Educação
 
 competência   conhecimento   cultura   perícia   prática   preparo   saber   tarimba   civilidade
 afabilidade   amabilidade   atenção   cortesia   delicadeza   fineza
+```
 
+## Installation
+
+### Using pip
+To try out via pip, run:
+```
+$ pip install pynonym
 ```
